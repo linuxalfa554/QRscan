@@ -19,28 +19,30 @@ public class ReaderActivity extends AppCompatActivity {
     public static final String MY_TAG="the_costom_message";
 
     private Button button1;
+    private EditText pass_word;
+    private Button button_sbm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reader);
+        addListenerOnButton();
+    }
 
-        Log.i(MY_TAG,"on_Create");
+    public void addListenerOnButton(){
+        pass_word = (EditText)findViewById(R.id.idPassword);
+        button_sbm = (Button)findViewById(R.id.idLoginButton);
 
-        button1 = (Button)  findViewById(R.id.button1);
-        final Activity activity= this;
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IntentIntegrator integrator = new IntentIntegrator(activity);
-                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                integrator.setPrompt("扫描");
-                integrator.setCameraId(0);
-                integrator.setBeepEnabled(false);
-                integrator.setBarcodeImageEnabled(false);
-                integrator.initiateScan();
-            }
-        });
+        button_sbm.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(ReaderActivity.this,pass_word.getText(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     public void onButtonClick(View v){
@@ -64,6 +66,23 @@ public class ReaderActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.i(MY_TAG,"onResume invoked");
+
+        Log.i(MY_TAG,"on_Create");
+
+        button1 = (Button)  findViewById(R.id.button1);
+        final Activity activity= this;
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator integrator = new IntentIntegrator(activity);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                integrator.setPrompt("扫描");
+                integrator.setCameraId(0);
+                integrator.setBeepEnabled(false);
+                integrator.setBarcodeImageEnabled(false);
+                integrator.initiateScan();
+            }
+        });
     }
     @Override
     protected void onPause() {
@@ -73,7 +92,7 @@ public class ReaderActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i(MY_TAG,"onStop invoked");
+        Log.i(MY_TAG,"onStop invoked") ;
     }
     @Override
     protected void onRestart() {
