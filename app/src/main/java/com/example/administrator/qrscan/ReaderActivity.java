@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 
@@ -42,6 +43,18 @@ public class ReaderActivity extends AppCompatActivity {
         });
     }
 
+    public void onButtonClick(View v){
+        EditText e1 = (EditText)findViewById(R.id.editText1);
+        EditText e2 = (EditText)findViewById(R.id.editText2);
+        TextView v3 = (TextView)findViewById(R.id.textView3);
+
+        Double num1 = Double.parseDouble(e1.getText().toString());
+        Double num2 = Double.parseDouble(e2.getText().toString());
+        Double num3 = num1+num2;
+        v3.setText(Double.toString(num3));
+
+
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -75,6 +88,9 @@ public class ReaderActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        TextView v3 = (TextView)findViewById(R.id.textView3);
+
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if(result != null){
             if (result.getContents()==null){
@@ -82,7 +98,7 @@ public class ReaderActivity extends AppCompatActivity {
             }
             else{
                 Toast.makeText(this,result.getContents(),Toast.LENGTH_LONG).show();
-
+                v3.setText(result.getContents());
             }
         }
         else{
