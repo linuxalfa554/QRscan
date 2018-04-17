@@ -8,11 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class ReaderActivity extends AppCompatActivity {
+
+    public static final String MY_TAG="the_costom_message";
 
     private Button button1;
 
@@ -20,6 +23,9 @@ public class ReaderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reader);
+
+        Log.i(MY_TAG,"on_Create");
+
         button1 = (Button)  findViewById(R.id.button1);
         final Activity activity= this;
         button1.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +40,37 @@ public class ReaderActivity extends AppCompatActivity {
                 integrator.initiateScan();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(MY_TAG,"onStart invoked");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(MY_TAG,"onResume invoked");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(MY_TAG,"onPause invoked");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(MY_TAG,"onStop invoked");
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(MY_TAG,"onRestart invoked");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(MY_TAG,"onDestroy invoked");
     }
 
     @Override
