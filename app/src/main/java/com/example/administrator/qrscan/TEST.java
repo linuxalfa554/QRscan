@@ -5,6 +5,7 @@ public class TEST {
 
     {
         i = 3+3;
+
     }
-    String test = "OK";
+    String test = "OKS";
 }
