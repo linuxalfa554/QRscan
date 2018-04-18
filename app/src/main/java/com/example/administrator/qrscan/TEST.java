@@ -4,7 +4,7 @@ public class TEST {
     Integer i;
 
     {
-        i = 1;
+        i = 3+3;
     }
     String test = "OK";
 }
