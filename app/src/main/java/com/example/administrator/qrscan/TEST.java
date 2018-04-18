@@ -6,6 +6,5 @@ public class TEST {
     {
         i = 1;
     }
-
     String test = "OK";
 }
